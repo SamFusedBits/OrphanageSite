@@ -7,10 +7,14 @@
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
     <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
          body {
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
+            width: 100vw !important;
             background-color: #f0f0f0;
         }
 
