@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Orphan_Web.Master" AutoEventWireup="true" CodeBehind="AdminLogin.aspx.cs" Inherits="OrphanageSite.AdminLogin" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="AdminLogin.aspx.cs" Inherits="OrphanageSite.AdminLogin" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -11,8 +11,8 @@
         body{
             height: 100vh;
             width: 100vw;
-            padding: 0;
             margin: 0;
+            padding: 0;
         }
         .container{
             width: 100%;
@@ -20,6 +20,7 @@
             border-radius: 15px !important;
             text-align: center;
             padding: 0;
+            margin: 35px auto;
             display: flex;
         }
         .row{
@@ -71,7 +72,7 @@
                     <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" placeholder="Password" CssClass="form-control"></asp:TextBox>
                   </div>
                   <div>
-                    <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click" CssClass="btn btn-success form-control" />
+                    <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click" CssClass="btn btn-danger form-control" />
                   </div>
                 </form>
             </div>

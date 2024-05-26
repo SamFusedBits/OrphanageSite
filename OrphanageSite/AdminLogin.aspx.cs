@@ -11,9 +11,9 @@ namespace OrphanageSite
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["AdminUsername"] != null)
+            if (!IsPostBack && Session["AdminUsername"] != null)
             {
-                Response.Redirect("~/Admin/AdminDashboard.aspx");
+                Response.Redirect("~/Admin/AdminDashboard.aspx", false);
             }
         }
 
@@ -24,12 +24,12 @@ namespace OrphanageSite
 
             // For demonstration purposes, let's assume the admin username is "admin" and password is "password"
 
-            if (username == "admin" && password == "password")
+            if (username == "admin" && password == "admin")
             {
                 // Admin authentication successful, store admin username in session
                 Session["AdminUsername"] = username;
                 // Redirect to admin dashboard
-                Response.Redirect("~/Admin/AdminDashboard.aspx");
+                Response.Redirect("~/Admin/AdminDashboard.aspx", false);
             }
             else
             {
