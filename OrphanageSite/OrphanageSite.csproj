@@ -69,6 +69,7 @@
     <Content Include="Admin\AddCamp.aspx" />
     <Content Include="Admin\AddChildren.aspx" />
     <Content Include="Admin\AdminDashboard.aspx" />
+    <Content Include="Admin\ListSponsors.aspx" />
     <Content Include="DataBase\OrphanageSiteDB.mdf" />
     <Content Include="DataBase\OrphanageSiteDB_log.ldf" />
     <Content Include="Assets\images\admin-image.png" />
@@ -109,6 +110,13 @@
     </Compile>
     <Compile Include="Admin\AdminMaster.Master.designer.cs">
       <DependentUpon>AdminMaster.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ListSponsors.aspx.cs">
+      <DependentUpon>ListSponsors.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ListSponsors.aspx.designer.cs">
+      <DependentUpon>ListSponsors.aspx</DependentUpon>
     </Compile>
     <Compile Include="Main.Master.cs">
       <DependentUpon>Main.Master</DependentUpon>
