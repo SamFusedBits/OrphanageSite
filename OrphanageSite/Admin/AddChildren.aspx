@@ -9,13 +9,17 @@
             margin: 35px auto;
             width: 70%;
         }
+        .card-body{
+            padding: 30px;
+        }
         hr{
             width: 50%;
             margin: auto;
         }
     </style>
-    <div class="container">
-        <h2>Add New Child</h2>
+    <div class="container card">
+        <h2 class="card-header">Add New Child</h2>
+        <div class="card-body">
         <form>
             <div class="mb-3">
                 <label for="FirstName" class="form-label">First Name</label>
@@ -42,13 +46,16 @@
                 <label for="DateOfJoining" class="form-label">Date of Joining</label>
                 <asp:TextBox ID="txtDateOfJoining" runat="server" CssClass="form-control" TextMode="Date" />
             </div>
-            <asp:Button ID="btnAddChild" runat="server" Text="Add Child" CssClass="btn btn-primary" OnClick="btnAddChild_Click" />
+            <asp:Button ID="btnAddChild" runat="server" Text="Add Child" CssClass="form-control btn btn-primary" OnClick="btnAddChild_Click" />
         </form>
+        </div>
      </div>
     <hr />
-    <div class="container">
-        <h2>List of Children</h2>
-        <asp:GridView ID="gvChildren" runat="server" CssClass="table table-striped">
-        </asp:GridView>
+    <div class="container card">
+        <h2 class="card-header">List of Children</h2>
+        <div class="card-body">
+            <asp:GridView ID="gvChildren" runat="server" CssClass="table table-striped">
+            </asp:GridView>
+        </div>
     </div>
 </asp:Content>
