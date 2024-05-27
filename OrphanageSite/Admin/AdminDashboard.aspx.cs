@@ -71,14 +71,14 @@ namespace OrphanageSite.Admin
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 // Fetch monthly donations for the current month
-                string comm = "SELECT SUM(Amount) FROM Contributions WHERE MONTH(ContributionDate) = MONTH(GETDATE()) AND YEAR(ContributionDate) = YEAR(GETDATE())";
+                string comm = "SELECT SUM(Amount) FROM Contributions WHERE MONTH(ContributionDate) = MONTH(GETDATE()) AND YEAR(ContributionDate) = YEAR(GETDATE()) AND SponsorshipReceived = 1";
                 SqlCommand cmd = new SqlCommand(comm, conn);
                 conn.Open();
                 object monthlyTotal = cmd.ExecuteScalar();
                 lblMonthlyDonation.Text = "₹" + (monthlyTotal == DBNull.Value ? "0" : ((decimal)monthlyTotal).ToString("F2"));
 
                 // Fetch annual donations for the current year
-                comm = "SELECT SUM(Amount) FROM Contributions WHERE YEAR(ContributionDate) = YEAR(GETDATE())";
+                comm = "SELECT SUM(Amount) FROM Contributions WHERE YEAR(ContributionDate) = YEAR(GETDATE()) AND SponsorshipReceived = 1";
                 cmd.CommandText = comm;
                 object annualTotal = cmd.ExecuteScalar();
                 lblAnnualDonation.Text = "₹" + (annualTotal == DBNull.Value ? "0" : ((decimal)annualTotal).ToString("F2"));
