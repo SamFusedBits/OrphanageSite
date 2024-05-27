@@ -66,6 +66,8 @@
   <ItemGroup>
     <Content Include="AdminLogin.aspx" />
     <Content Include="Admin\AdminDashboard.aspx" />
+    <Content Include="DataBase\OrphanageSiteDB.mdf" />
+    <Content Include="DataBase\OrphanageSiteDB_log.ldf" />
     <Content Include="Assets\images\admin-image.png" />
     <Content Include="Web.config" />
   </ItemGroup>
