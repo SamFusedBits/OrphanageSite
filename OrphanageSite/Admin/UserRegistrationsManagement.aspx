@@ -2,8 +2,22 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="container">
-            <h2>User Registrations</h2>
+    <style>
+        .container{
+            margin: 35px auto;
+            width: 70%;
+        }
+        .card-body{
+            padding: 30px;
+        }
+        hr{
+            width: 50%;
+            margin: auto;
+        }
+    </style>
+    <div class="container card">
+        <h2 class="card-header">User Registrations</h2>
+        <div class="card-body">
             <asp:GridView ID="gvUsers" runat="server" AutoGenerateColumns="False" OnRowCommand="gvUsers_RowCommand" CssClass="table table-striped">
                 <Columns>
                     <asp:BoundField DataField="UserID" HeaderText="UserID" />
@@ -20,8 +34,12 @@
                     </asp:TemplateField>
                 </Columns>
             </asp:GridView>
-
-            <h2>Execute Custom SQL Query</h2>
+        </div>
+    </div>
+    <hr />
+    <div class ="container card">
+        <h2 class="card-header">Execute Custom SQL Query</h2>
+        <div class="card-body">
             <div class="mb-3">
                 <asp:TextBox ID="txtSqlQuery" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="5" />
             </div>
@@ -32,4 +50,5 @@
             <asp:GridView ID="gvQueryResults" runat="server" AutoGenerateColumns="True" CssClass="table table-striped" />
             <asp:Button ID="btnClear" runat="server" Text="Clear" OnClick="btnClear_Click" CssClass="form-control btn btn-danger mt-2 ml-2" />
         </div>
+    </div>
 </asp:Content>
