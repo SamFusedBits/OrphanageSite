@@ -70,6 +70,8 @@
     <Content Include="Admin\AddChildren.aspx" />
     <Content Include="Admin\AdminDashboard.aspx" />
     <Content Include="Admin\ListSponsors.aspx" />
+    <Content Include="Admin\UserRegistrationsManagement.aspx" />
+    <Content Include="Assets\CSS\ScrollBar.css" />
     <Content Include="DataBase\OrphanageSiteDB.mdf" />
     <Content Include="DataBase\OrphanageSiteDB_log.ldf" />
     <Content Include="Assets\images\admin-image.png" />
@@ -117,6 +119,13 @@
     </Compile>
     <Compile Include="Admin\ListSponsors.aspx.designer.cs">
       <DependentUpon>ListSponsors.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\UserRegistrationsManagement.aspx.cs">
+      <DependentUpon>UserRegistrationsManagement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\UserRegistrationsManagement.aspx.designer.cs">
+      <DependentUpon>UserRegistrationsManagement.aspx</DependentUpon>
     </Compile>
     <Compile Include="Main.Master.cs">
       <DependentUpon>Main.Master</DependentUpon>
