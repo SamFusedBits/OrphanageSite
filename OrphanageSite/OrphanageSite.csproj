@@ -54,6 +54,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
@@ -69,6 +70,7 @@
     <Content Include="Admin\AddCamp.aspx" />
     <Content Include="Admin\AddChildren.aspx" />
     <Content Include="Admin\AdminDashboard.aspx" />
+    <Content Include="Admin\AdoptionStatus.aspx" />
     <Content Include="Admin\ListSponsors.aspx" />
     <Content Include="Admin\UserRegistrationsManagement.aspx" />
     <Content Include="Assets\CSS\ScrollBar.css" />
@@ -112,6 +114,13 @@
     </Compile>
     <Compile Include="Admin\AdminMaster.Master.designer.cs">
       <DependentUpon>AdminMaster.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AdoptionStatus.aspx.cs">
+      <DependentUpon>AdoptionStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AdoptionStatus.aspx.designer.cs">
+      <DependentUpon>AdoptionStatus.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\ListSponsors.aspx.cs">
       <DependentUpon>ListSponsors.aspx</DependentUpon>
