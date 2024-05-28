@@ -1,0 +1,25 @@
+﻿::-webkit-scrollbar {
+    width: 12px; /* Width of the entire scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    background: #e0f5e9; /* Color of the scrollbar track */
+    border-radius: 10px; /* Round the corners of the track */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #76c893; /* Color of the scrollbar thumb */
+    border-radius: 10px; /* Round the corners of the thumb */
+    border: 3px solid #e0f5e9; /* Creates space around the thumb */
+}
+
+/* For Firefox */
+html {
+    scrollbar-width: thin; /* Sets the width of the scrollbar */
+    scrollbar-color: #76c893 #e0f5e9; /* Sets the color of the thumb and track */
+}
+
+body {
+    scrollbar-color: #76c893 #e0f5e9; /* For other parts of the document */
+    scrollbar-width: thin;
+}
