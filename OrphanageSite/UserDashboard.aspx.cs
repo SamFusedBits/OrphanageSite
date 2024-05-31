@@ -22,6 +22,9 @@ namespace OrphanageSite
         {
             try
             {
+                // Check if the user is logged in
+                bool isUserLoggedIn = (Session["LoggedInUser"] != null);
+
                 // Retrieve values from the form fields
                 string firstName = txtFirstName.Value;
                 string lastName = txtLastName.Value;
@@ -29,11 +32,10 @@ namespace OrphanageSite
                 string phoneNumber = txtPhoneNumber.Value;
                 decimal amount = Convert.ToDecimal(txtAmount.Value);
                 string contributionType = ddlContributionType.Value;
-                bool isRegisteredMember = chkIsRegisteredMember.Checked;
-                bool sponsorshipReceived = chkSponsorshipReceived.Checked;
+                bool isRegisteredMember = isUserLoggedIn; // Set based on session state
 
                 // Call the SaveDonation method with the retrieved values
-                SaveDonation(firstName, lastName, email, phoneNumber, amount, contributionType, isRegisteredMember, sponsorshipReceived);
+                SaveDonation(firstName, lastName, email, phoneNumber, amount, contributionType, isRegisteredMember);
 
                 // Display a success message
                 messageContainer.InnerText = "Donation submitted successfully!";
@@ -137,11 +139,11 @@ namespace OrphanageSite
             }
         }
 
-        public void SaveDonation(string firstName, string lastName, string email, string phoneNumber, decimal amount, string contributionType, bool isRegisteredMember, bool sponsorshipReceived)
+        public void SaveDonation(string firstName, string lastName, string email, string phoneNumber, decimal amount, string contributionType, bool isRegisteredMember)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["OrphanageSiteDBConnectionStringUser"].ConnectionString;
-            string query = @"INSERT INTO Contributions (ContributorFirstName, ContributorLastName, ContributorEmail, ContributorPhoneNumber, Amount, ContributionType, IsRegisteredMember, SponsorshipReceived) 
-                             VALUES (@FirstName, @LastName, @Email, @PhoneNumber, @Amount, @ContributionType, @IsRegisteredMember, @SponsorshipReceived)";
+            string query = @"INSERT INTO Contributions (ContributorFirstName, ContributorLastName, ContributorEmail, ContributorPhoneNumber, Amount, ContributionType, IsRegisteredMember) 
+                             VALUES (@FirstName, @LastName, @Email, @PhoneNumber, @Amount, @ContributionType, @IsRegisteredMember)";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             using (SqlCommand command = new SqlCommand(query, connection))
@@ -153,7 +155,6 @@ namespace OrphanageSite
                 command.Parameters.AddWithValue("@Amount", amount);
                 command.Parameters.AddWithValue("@ContributionType", contributionType);
                 command.Parameters.AddWithValue("@IsRegisteredMember", isRegisteredMember);
-                command.Parameters.AddWithValue("@SponsorshipReceived", sponsorshipReceived);
 
                 connection.Open();
                 command.ExecuteNonQuery();
