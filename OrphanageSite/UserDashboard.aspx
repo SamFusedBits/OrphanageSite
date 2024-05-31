@@ -250,9 +250,7 @@
                     <option value="Monetary">Monetary</option>
                     <option value="In-Kind">In-Kind</option>
                 </select>
-                <input type="checkbox" id="chkIsRegisteredMember" runat="server" /> Is Registered Member
-                <br />
-                <input type="checkbox" id="chkSponsorshipReceived" runat="server" /> Sponsorship Received
+                <input type="checkbox" id="chkIsRegisteredMember" /> Is Registered Member
                 <br />
                 <asp:Button ID="BtnSubmitDonation" runat="server" Text="Submit Donation" CssClass="button" OnClick="BtnSubmitDonation_Click" />
             </div>
@@ -344,6 +342,16 @@
             }
         }
 
+        // Function to disable the "Is Registered Member" checkbox if the user is logged in
+        window.onload = function () {
+            var isUserLoggedIn = '<%= Session["LoggedInUser"] != null %>'; // Check if user is logged in
+            var checkbox = document.getElementById('chkIsRegisteredMember');
+
+            if (isUserLoggedIn) {
+                checkbox.disabled = true; // Disable checkbox if user is logged in
+            }
+        };
+
         function toggleAdoptionForm() {
             var overlay = document.getElementById('overlay');
             var form = document.getElementById('adoptionPreferencesForm');
@@ -366,7 +374,6 @@
             var amount = document.getElementById('txtAmount').value;
             var contributionType = document.getElementById('ddlContributionType').value;
             var isRegisteredMember = document.getElementById('chkIsRegisteredMember').checked;
-            var sponsorshipReceived = document.getElementById('chkSponsorshipReceived').checked;
 
             // Create an HTML form element
             var form = document.createElement('form');
@@ -417,12 +424,6 @@
             isRegisteredMemberInput.setAttribute('name', 'IsRegisteredMember');
             isRegisteredMemberInput.setAttribute('value', isRegisteredMember);
             form.appendChild(isRegisteredMemberInput);
-
-            var sponsorshipReceivedInput = document.createElement('input');
-            sponsorshipReceivedInput.setAttribute('type', 'hidden');
-            sponsorshipReceivedInput.setAttribute('name', 'SponsorshipReceived');
-            sponsorshipReceivedInput.setAttribute('value', sponsorshipReceived);
-            form.appendChild(sponsorshipReceivedInput);
 
             // Append the form to the document body and submit it
             document.body.appendChild(form);
