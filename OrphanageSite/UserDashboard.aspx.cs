@@ -81,7 +81,7 @@ namespace OrphanageSite
                 SaveAdoptionPreferences(fullName, email, phoneNumber, city, state, postalCode, preferredGender, ageRange, numberOfChildren, healthConsiderations, primaryLanguage, religion, parentingStyle, educationPlans, reasonForAdopting, previousExperience, learnAboutNGO, otherInformation);
 
                 // Display a success message
-                messageContainer.InnerText = "Adoption preferences submitted successfully!";
+                messageContainer.InnerText = "Your adoption preferences have been successfully submitted! Our team will reach out to you soon to discuss the next steps in the adoption process. Thank you for choosing to change a child's life through adoption!";
                 messageContainer.Style["background-color"] = "#dff0d8";
                 messageContainer.Style["color"] = "#3c763d";
                 messageContainer.Style["border"] = "1px solid #d6e9c6";
