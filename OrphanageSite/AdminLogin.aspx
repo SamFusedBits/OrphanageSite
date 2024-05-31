@@ -72,7 +72,7 @@
                     <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" placeholder="Password" CssClass="form-control"></asp:TextBox>
                   </div>
                   <div>
-                    <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click" CssClass="btn btn-danger form-control" />
+                    <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="BtnLogin_Click" CssClass="btn btn-danger form-control" />
                   </div>
                 </form>
             </div>
