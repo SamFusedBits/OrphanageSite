@@ -123,24 +123,6 @@ namespace OrphanageSite
         protected global::System.Web.UI.HtmlControls.HtmlSelect ddlContributionType;
 
         /// <summary>
-        /// chkIsRegisteredMember control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox chkIsRegisteredMember;
-
-        /// <summary>
-        /// chkSponsorshipReceived control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox chkSponsorshipReceived;
-
-        /// <summary>
         /// BtnSubmitDonation control.
         /// </summary>
         /// <remarks>
