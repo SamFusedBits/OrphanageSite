@@ -79,6 +79,7 @@
     <Content Include="Assets\images\adopt.png" />
     <Content Include="Assets\images\child.jpg" />
     <Content Include="Assets\images\donation.jpg" />
+    <Content Include="Assets\images\user-register.png" />
     <Content Include="Camp.aspx" />
     <Content Include="DataBase\OrphanageSiteDB.mdf" />
     <Content Include="DataBase\OrphanageSiteDB_log.ldf" />
@@ -86,6 +87,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Sponsors.aspx" />
+    <Content Include="Login.aspx" />
+    <Content Include="Register.aspx" />
     <Content Include="UserDashboard.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -153,6 +156,13 @@
     <Compile Include="Camp.aspx.designer.cs">
       <DependentUpon>Camp.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Main.Master.cs">
       <DependentUpon>Main.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -161,6 +171,13 @@
       <DependentUpon>Main.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Sponsors.aspx.cs">
       <DependentUpon>Sponsors.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
