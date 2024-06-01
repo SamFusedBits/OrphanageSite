@@ -15,7 +15,8 @@
     <AssemblyName>OrphanageSite</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
-    <Use64BitIISExpress>true</Use64BitIISExpress>
+    <Use64BitIISExpress>
+    </Use64BitIISExpress>
     <IISExpressSSLPort>44351</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -76,6 +77,7 @@
     <Content Include="Admin\UserRegistrationsManagement.aspx" />
     <Content Include="Assets\CSS\ScrollBar.css" />
     <Content Include="Assets\images\adopt.png" />
+    <Content Include="Assets\images\child.jpg" />
     <Content Include="Assets\images\donation.jpg" />
     <Content Include="Assets\images\user-register.png" />
     <Content Include="Camp.aspx" />
@@ -84,6 +86,7 @@
     <Content Include="Assets\images\admin-image.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Sponsors.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Register.aspx" />
     <Content Include="UserDashboard.aspx" />
@@ -174,6 +177,13 @@
     </Compile>
     <Compile Include="Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sponsors.aspx.cs">
+      <DependentUpon>Sponsors.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sponsors.aspx.designer.cs">
+      <DependentUpon>Sponsors.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserDashboard.aspx.cs">
       <DependentUpon>UserDashboard.aspx</DependentUpon>

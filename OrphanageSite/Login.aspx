@@ -66,10 +66,10 @@
               </div>
               <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">@</span>
-                <asp:TextBox ID="txtEmail" runat="server" placeholder="Email" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtEmail" runat="server" placeholder="Email" CssClass="form-control" required="required"></asp:TextBox>
               </div>
               <div>
-                <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" placeholder="Password" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" placeholder="Password" CssClass="form-control" required="required"></asp:TextBox>
               </div>
               <div>
                 <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="BtnLogin_Click" CssClass="btn btn-success form-control" />
