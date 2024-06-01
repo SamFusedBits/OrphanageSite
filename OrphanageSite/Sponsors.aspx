@@ -1,6 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="Sponsors.aspx.cs" Inherits="OrphanageSite.Sponsors" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <%--Hello--%>
     <style>
         .container {
             display: flex;
