@@ -63,23 +63,30 @@
                 <form id="form1" runat="server">
                     <div class="mb-3">
                         <label for="Email" class="form-label">Email</label>
-                        <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" TextMode="Email" />
+                        <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" TextMode="Email" required="required" />
+                        <label for="Email" class="form-label">
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Email is required!" ForeColor="Red" ControlToValidate="txtEmail"></asp:RequiredFieldValidator>
+                        </label>
                     </div>
                     <div class="mb-3">
                         <label for="Password" class="form-label">Password</label>
-                        <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" TextMode="Password" />
+                        <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" TextMode="Password" required="required" />
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtPassword" ErrorMessage="Password is required!" ForeColor="Red"></asp:RequiredFieldValidator>
                     </div>
                     <div class="mb-3">
                         <label for="FirstName" class="form-label">First Name</label>
-                        <asp:TextBox ID="txtFirstName" runat="server" CssClass="form-control" />
+                        <asp:TextBox ID="txtFirstName" runat="server" CssClass="form-control" required="required" />
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtFirstName" ErrorMessage="Firstname is required!" ForeColor="Red"></asp:RequiredFieldValidator>
                     </div>
                     <div class="mb-3">
                         <label for="LastName" class="form-label">Last Name</label>
-                        <asp:TextBox ID="txtLastName" runat="server" CssClass="form-control" />
+                        <asp:TextBox ID="txtLastName" runat="server" CssClass="form-control" required="required" />
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtLastName" ErrorMessage="Lastname is required!" ForeColor="Red"></asp:RequiredFieldValidator>
                     </div>
                     <div class="mb-3">
                         <label for="PhoneNumber" class="form-label">Phone Number</label>
-                        <asp:TextBox ID="txtPhoneNumber" runat="server" CssClass="form-control" />
+                        <asp:TextBox ID="txtPhoneNumber" runat="server" CssClass="form-control" required="required" />
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtPhoneNumber" ErrorMessage="Phone Number is required!" ForeColor="Red"></asp:RequiredFieldValidator>
                     </div>
                     <asp:Button ID="btnRegister" runat="server" Text="Register" CssClass="form-control btn btn-primary" OnClick="btnRegister_Click" />
                 </form>
