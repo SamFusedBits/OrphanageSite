@@ -63,23 +63,23 @@
                 <form id="form1" runat="server">
                     <div class="mb-3">
                         <label for="Email" class="form-label">Email</label>
-                        <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" TextMode="Email" />
+                        <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" TextMode="Email" required="required" />
                     </div>
                     <div class="mb-3">
                         <label for="Password" class="form-label">Password</label>
-                        <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" TextMode="Password" />
+                        <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" TextMode="Password" required="required" />
                     </div>
                     <div class="mb-3">
                         <label for="FirstName" class="form-label">First Name</label>
-                        <asp:TextBox ID="txtFirstName" runat="server" CssClass="form-control" />
+                        <asp:TextBox ID="txtFirstName" runat="server" CssClass="form-control" required="required" />
                     </div>
                     <div class="mb-3">
                         <label for="LastName" class="form-label">Last Name</label>
-                        <asp:TextBox ID="txtLastName" runat="server" CssClass="form-control" />
+                        <asp:TextBox ID="txtLastName" runat="server" CssClass="form-control" required="required" />
                     </div>
                     <div class="mb-3">
                         <label for="PhoneNumber" class="form-label">Phone Number</label>
-                        <asp:TextBox ID="txtPhoneNumber" runat="server" CssClass="form-control" />
+                        <asp:TextBox ID="txtPhoneNumber" runat="server" CssClass="form-control" required="required" />
                     </div>
                     <asp:Button ID="btnRegister" runat="server" Text="Register" CssClass="form-control btn btn-primary" OnClick="btnRegister_Click" />
                 </form>
