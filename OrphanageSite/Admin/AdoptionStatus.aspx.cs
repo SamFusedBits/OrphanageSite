@@ -19,6 +19,10 @@ namespace OrphanageSite.Admin
             {
                 BindGrid();
             }
+            if (!IsPostBack && Session["AdminUsername"] != null)
+            {
+                Response.Redirect("~/AdminLogin.aspx", false);
+            }
         }
 
         private void BindGrid()

@@ -19,6 +19,10 @@ namespace OrphanageSite.Admin
             {
                 BindChildrenGrid();
             }
+            if (!IsPostBack && Session["AdminUsername"] != null)
+            {
+                Response.Redirect("~/AdminLogin.aspx", false);
+            }
         }
         protected void btnAddChild_Click(object sender, EventArgs e)
         {

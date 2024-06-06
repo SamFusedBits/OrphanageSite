@@ -20,6 +20,10 @@ namespace OrphanageSite.Admin
                 FetchCamps();
                 FetchDonations();
             }
+            if (!IsPostBack && Session["AdminUsername"] != null)
+            {
+                Response.Redirect("~/AdminLogin.aspx", false);
+            }
         }
 
         private void FetchRegisteredUsers()

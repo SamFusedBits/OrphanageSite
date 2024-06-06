@@ -19,6 +19,10 @@ namespace OrphanageSite.Admin
             {
                 BindContributionsGrid();
             }
+            if (!IsPostBack && Session["AdminUsername"] != null)
+            {
+                Response.Redirect("~/AdminLogin.aspx", false);
+            }
         }
 
         //protected void ddlContributionType_SelectedIndexChanged(object sender, EventArgs e)

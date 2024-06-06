@@ -19,6 +19,10 @@ namespace OrphanageSite.Admin
             {
                 BindCampsGrid();
             }
+            if (!IsPostBack && Session["AdminUsername"] != null)
+            {
+                Response.Redirect("~/AdminLogin.aspx", false);
+            }
         }
 
         protected void btnAddCamp_Click(object sender, EventArgs e)
