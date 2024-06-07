@@ -12,7 +12,7 @@ namespace OrphanageSite
 
         protected void BtnLogin_Click(object sender, EventArgs e)
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["OrphanageSiteDBConnectionStringUserRegLog"].ConnectionString;
+            string connectionString = ConfigurationManager.ConnectionStrings["OrphanageSiteDBConnectionStringUser"].ConnectionString;
             if (connectionString == null)
             {
                 ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Database connection string not found. Please contact the administrator.');", true);
@@ -30,9 +30,10 @@ namespace OrphanageSite
                         cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
                         cmd.Parameters.AddWithValue("@Password", txtPassword.Text);
 
-                        int userCount = (int)cmd.ExecuteScalar();
-                        if (userCount > 0)
+                        object result = cmd.ExecuteScalar();
+                        if (result != null)
                         {
+                            Session["UserID"] = result.ToString();
                             ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Login successful!'); window.location.href='UserDashboard.aspx';", true);
                         }
                         else

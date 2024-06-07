@@ -77,7 +77,7 @@
                         <asp:BoundField DataField="ContactInfo" HeaderText="ContactInfo" SortExpression="ContactInfo" />
                     </Columns>
                 </asp:GridView>
-                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:OrphanageSiteDBConnectionString %>" ProviderName="<%$ ConnectionStrings:OrphanageSiteDBConnectionString2.ProviderName %>" SelectCommand="SELECT [CampName], [StreetAddress], [City], [District], [State], [Country], [Description], [ContactInfo] FROM [Camps]"></asp:SqlDataSource>
+                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:OrphanageSiteDBConnectionStringUser %>" ProviderName="<%$ ConnectionStrings:OrphanageSiteDBConnectionStringUser.ProviderName %>" SelectCommand="SELECT [CampName], [StreetAddress], [City], [District], [State], [Country], [Description], [ContactInfo] FROM [Camps]"></asp:SqlDataSource>
             </form>
         </div>
     </div>

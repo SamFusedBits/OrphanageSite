@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Web.UI.WebControls;
 
 namespace OrphanageSite
 {
     public partial class UserDashboard : System.Web.UI.Page
     {
+        private readonly string connStr = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\hp\\source\\repos\\OrphanageSite\\OrphanageSite\\DataBase\\OrphanageSiteDB.mdf;Integrated Security=True;Connect Timeout=30";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -13,10 +16,27 @@ namespace OrphanageSite
                 // Load adoption and contribution statistics
                 LoadAdoptionStatistics();
                 LoadContributionStatistics();
+                LoadChildren();
                 BtnSubmitDonation.Click += new EventHandler(BtnSubmitDonation_Click);
                 BtnSubmitAdoption.Click += new EventHandler(BtnSubmitAdoption_Click);
             }
         }
+
+        private void LoadChildren()
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                SqlCommand cmd = new SqlCommand("SELECT ChildID, FirstName + ' ' + LastName AS FullName FROM Children", conn);
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                ddlChildID.DataSource = reader;
+                ddlChildID.DataTextField = "FullName";
+                ddlChildID.DataValueField = "ChildID";
+                ddlChildID.DataBind();
+                ddlChildID.Items.Insert(0, new ListItem("-- Select a Child --", "0"));
+            }
+        }
+
 
         protected void BtnSubmitDonation_Click(object sender, EventArgs e)
         {
@@ -59,46 +79,107 @@ namespace OrphanageSite
         {
             try
             {
-                // Retrieve values from the form fields
-                string fullName = txtFullName.Value;
-                string email = txtEmailAdopt.Value;
-                string phoneNumber = txtPhoneAdopt.Value;
-                string city = txtCity.Value;
-                string state = txtState.Value;
-                string postalCode = txtPostalCode.Value;
-                string preferredGender = ddlPreferredGender.Value;
-                string ageRange = ddlAgeRange.Value;
-                int numberOfChildren = Convert.ToInt32(txtNumberOfChildren.Value);
-                string healthConsiderations = ddlHealthConsiderations.Value;
-                string primaryLanguage = txtPrimaryLanguage.Value;
-                string religion = ddlReligion.Value;
-                string parentingStyle = txtParentingStyle.Value;
-                string educationPlans = ddlEducationPlans.Value;
-                string reasonForAdopting = txtReasonForAdopting.Value;
-                string previousExperience = txtPreviousExperience.Value;
-                string learnAboutNGO = txtLearnAboutNGO.Value;
-                string otherInformation = txtOtherInformation.Value;
+                // Validate selected child ID
+                if (ddlChildID.SelectedValue == "0")
+                {
+                    messageContainer.InnerText = "Please select a child to adopt.";
+                    messageContainer.Style["background-color"] = "#f2dede";
+                    messageContainer.Style["color"] = "#a94442";
+                    messageContainer.Style["border"] = "1px solid #ebccd1";
+                    messageContainer.Style["display"] = "block";
+                    return;
+                }
 
-                // Call the SaveAdoptionPreferences method with the retrieved values
-                SaveAdoptionPreferences(fullName, email, phoneNumber, city, state, postalCode, preferredGender, ageRange, numberOfChildren, healthConsiderations, primaryLanguage, religion, parentingStyle, educationPlans, reasonForAdopting, previousExperience, learnAboutNGO, otherInformation);
+                // Validate user session
+                if (Session["UserID"] == null || string.IsNullOrEmpty(Session["UserID"].ToString()))
+                {
+                    messageContainer.InnerText = "You must be logged in to submit an adoption request.";
+                    messageContainer.Style["background-color"] = "#f2dede";
+                    messageContainer.Style["color"] = "#a94442";
+                    messageContainer.Style["border"] = "1px solid #ebccd1";
+                    messageContainer.Style["display"] = "block";
+                    return;
+                }
 
-                // Display a success message
-                messageContainer.InnerText = "Your adoption preferences have been successfully submitted! Our team will reach out to you soon to discuss the next steps in the adoption process. Thank you for choosing to change a child's life through adoption!";
-                messageContainer.Style["background-color"] = "#dff0d8";
-                messageContainer.Style["color"] = "#3c763d";
-                messageContainer.Style["border"] = "1px solid #d6e9c6";
+                // Parse child ID and user ID
+                if (!int.TryParse(ddlChildID.SelectedValue, out int childId) || !int.TryParse(Session["UserID"].ToString(), out int userId))
+                {
+                    messageContainer.InnerText = "Invalid child ID or user ID.";
+                    messageContainer.Style["background-color"] = "#f2dede";
+                    messageContainer.Style["color"] = "#a94442";
+                    messageContainer.Style["border"] = "1px solid #ebccd1";
+                    messageContainer.Style["display"] = "block";
+                    return;
+                }
+
+                // Retrieve logged-in user's first name and last name from the database using the UserID
+                string firstName;
+                string lastName;
+                using (SqlConnection conn = new SqlConnection(connStr))
+                {
+                    SqlCommand cmd = new SqlCommand("SELECT FirstName, LastName FROM Users WHERE UserID = @UserID", conn);
+                    cmd.Parameters.AddWithValue("@UserID", userId);
+                    conn.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        firstName = reader["FirstName"].ToString();
+                        lastName = reader["LastName"].ToString();
+                    }
+                    else
+                    {
+                        messageContainer.InnerText = "User details not found.";
+                        messageContainer.Style["background-color"] = "#f2dede";
+                        messageContainer.Style["color"] = "#a94442";
+                        messageContainer.Style["border"] = "1px solid #ebccd1";
+                        messageContainer.Style["display"] = "block";
+                        return;
+                    }
+                }
+
+                // Prepare adoption data
+                DateTime adoptionDate = DateTime.Now;
+
+                // Insert adoption record into the database
+                using (SqlConnection conn = new SqlConnection(connStr))
+                {
+                    SqlCommand cmd = new SqlCommand(@"INSERT INTO Adoptions (ChildID, UserID, AdoptionDate, UserFirstName, UserLastName) 
+                              VALUES (@ChildID, @UserID, @AdoptionDate, @UserFirstName, @UserLastName)", conn);
+                    cmd.Parameters.AddWithValue("@ChildID", childId);
+                    cmd.Parameters.AddWithValue("@UserID", userId);
+                    cmd.Parameters.AddWithValue("@AdoptionDate", adoptionDate);
+                    cmd.Parameters.AddWithValue("@UserFirstName", firstName);
+                    cmd.Parameters.AddWithValue("@UserLastName", lastName);
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+
+                    messageContainer.InnerText = "Your adoption request has been submitted successfully!";
+                    messageContainer.Style["background-color"] = "#dff0d8";
+                    messageContainer.Style["color"] = "#3c763d";
+                    messageContainer.Style["border"] = "1px solid #d6e9c6";
+                    messageContainer.Style["display"] = "block";
+                }
+            }
+            catch (SqlException ex)
+            {
+                messageContainer.InnerText = "An error occurred while submitting the adoption request: " + ex.Message;
+                messageContainer.Style["background-color"] = "#f2dede";
+                messageContainer.Style["color"] = "#a94442";
+                messageContainer.Style["border"] = "1px solid #ebccd1";
                 messageContainer.Style["display"] = "block";
             }
             catch (Exception ex)
             {
-                // Display an error message
-                messageContainer.InnerText = "Error submitting adoption preferences: " + ex.Message;
+                messageContainer.InnerText = "An unexpected error occurred: " + ex.Message;
                 messageContainer.Style["background-color"] = "#f2dede";
                 messageContainer.Style["color"] = "#a94442";
                 messageContainer.Style["border"] = "1px solid #ebccd1";
                 messageContainer.Style["display"] = "block";
             }
         }
+
+
 
 
         private void LoadAdoptionStatistics()
@@ -161,37 +242,5 @@ namespace OrphanageSite
             }
         }
 
-        public void SaveAdoptionPreferences(string fullName, string email, string phoneNumber, string city, string state, string postalCode, string preferredGender, string ageRange, int numberOfChildren, string healthConsiderations, string primaryLanguage, string religion, string parentingStyle, string educationPlans, string reasonForAdopting, string previousExperience, string learnAboutNGO, string otherInformation)
-        {
-            string connectionString = ConfigurationManager.ConnectionStrings["OrphanageSiteDBConnectionStringUser"].ConnectionString;
-            string query = @"INSERT INTO AdoptionPreferences (FullName, Email, PhoneNumber, City, State, PostalCode, PreferredGender, AgeRange, NumberOfChildren, HealthConsiderations, PrimaryLanguage, Religion, ParentingStyle, EducationPlans, ReasonForAdopting, PreviousExperience, LearnAboutNGO, OtherInformation) 
-                     VALUES (@FullName, @Email, @PhoneNumber, @City, @State, @PostalCode, @PreferredGender, @AgeRange, @NumberOfChildren, @HealthConsiderations, @PrimaryLanguage, @Religion, @ParentingStyle, @EducationPlans, @ReasonForAdopting, @PreviousExperience, @LearnAboutNGO, @OtherInformation)";
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            using (SqlCommand command = new SqlCommand(query, connection))
-            {
-                command.Parameters.AddWithValue("@FullName", fullName);
-                command.Parameters.AddWithValue("@Email", email);
-                command.Parameters.AddWithValue("@PhoneNumber", phoneNumber);
-                command.Parameters.AddWithValue("@City", city);
-                command.Parameters.AddWithValue("@State", state);
-                command.Parameters.AddWithValue("@PostalCode", postalCode);
-                command.Parameters.AddWithValue("@PreferredGender", preferredGender);
-                command.Parameters.AddWithValue("@AgeRange", ageRange);
-                command.Parameters.AddWithValue("@NumberOfChildren", numberOfChildren);
-                command.Parameters.AddWithValue("@HealthConsiderations", healthConsiderations);
-                command.Parameters.AddWithValue("@PrimaryLanguage", primaryLanguage);
-                command.Parameters.AddWithValue("@Religion", religion);
-                command.Parameters.AddWithValue("@ParentingStyle", parentingStyle);
-                command.Parameters.AddWithValue("@EducationPlans", educationPlans);
-                command.Parameters.AddWithValue("@ReasonForAdopting", reasonForAdopting);
-                command.Parameters.AddWithValue("@PreviousExperience", previousExperience);
-                command.Parameters.AddWithValue("@LearnAboutNGO", learnAboutNGO);
-                command.Parameters.AddWithValue("@OtherInformation", otherInformation);
-
-                connection.Open();
-                command.ExecuteNonQuery();
-            }
-        }
     }
 }

@@ -91,7 +91,7 @@
                 <div class="card-header">Donation Graph</div>
                 <div class="card-body">
                     <div class="card-title">
-                        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:OrphanageSiteDBConnectionString %>" SelectCommand="SELECT MONTH(ContributionDate) AS Month, SUM(Amount) AS TotalDonation FROM Contributions WHERE (YEAR(ContributionDate) = YEAR(GETDATE())) GROUP BY MONTH(ContributionDate)"></asp:SqlDataSource>
+                        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:OrphanageSiteDBConnectionStringUser %>" SelectCommand="SELECT MONTH(ContributionDate) AS Month, SUM(Amount) AS TotalDonation FROM Contributions WHERE (YEAR(ContributionDate) = YEAR(GETDATE())) GROUP BY MONTH(ContributionDate)"></asp:SqlDataSource>
                         <br />
                         <asp:Chart ID="Chart1" runat="server" DataSourceID="SqlDataSource1" Palette="SeaGreen" CssClass="bar-graph" Height="450px" Width="600px">
                             <series>

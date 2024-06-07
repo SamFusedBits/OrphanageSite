@@ -12,7 +12,7 @@ namespace OrphanageSite
 
         protected void btnRegister_Click(object sender, EventArgs e)
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["OrphanageSiteDBConnectionStringUserRegLog"].ConnectionString;
+            string connectionString = ConfigurationManager.ConnectionStrings["OrphanageSiteDBConnectionStringUser"].ConnectionString;
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 try

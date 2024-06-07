@@ -24,7 +24,7 @@ namespace OrphanageSite
             string phone = Phone.Text;
             decimal amount = Convert.ToDecimal(Amount.Text);
             string donateType = DonateType.SelectedValue;
-            string connectionString = WebConfigurationManager.ConnectionStrings["OrphanageSiteDBConnectionString2"].ConnectionString;
+            string connectionString = WebConfigurationManager.ConnectionStrings["OrphanageSiteDBConnectionStringUser"].ConnectionString;
 
             try
             {
@@ -61,7 +61,7 @@ namespace OrphanageSite
 
         private void LoadContributors()
         {
-            string connectionString = WebConfigurationManager.ConnectionStrings["OrphanageSiteDBConnectionString2"].ConnectionString;
+            string connectionString = WebConfigurationManager.ConnectionStrings["OrphanageSiteDBConnectionStringUser"].ConnectionString;
             List<string> contributors = new List<string>();
 
             using (SqlConnection connection = new SqlConnection(connectionString))

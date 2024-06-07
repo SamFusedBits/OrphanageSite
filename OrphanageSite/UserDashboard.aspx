@@ -257,67 +257,16 @@
 
             <!-- Adoption Preferences Form -->
             <div id="adoptionPreferencesForm">
-                <h2>Adoption Preferences Form</h2>
-                <h3>Personal Information</h3>
-                <input type="text" placeholder="Full Name" id="txtFullName" runat="server" />
-                <input type="email" placeholder="Email Address" id="txtEmailAdopt" runat="server" />
-                <input type="tel" placeholder="Phone Number" id="txtPhoneAdopt" runat="server" />
-                <input type="text" placeholder="City" id="txtCity" runat="server" />
-                <input type="text" placeholder="State/Province" id="txtState" runat="server" />
-                <input type="text" placeholder="Postal/ZIP Code" id="txtPostalCode" runat="server" />
-                
-                <h3>Child Preferences</h3>
-                <label>Preferred Gender</label>
-                <select id="ddlPreferredGender" runat="server">
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="No Preference">No Preference</option>
-                </select>
-                <label>Preferred Age Range</label>
-                <select id="ddlAgeRange" runat="server">
-                    <option value="0-2 years">0-2 years</option>
-                    <option value="3-5 years">3-5 years</option>
-                    <option value="6-8 years">6-8 years</option>
-                    <option value="9-12 years">9-12 years</option>
-                    <option value="13-18 years">13-18 years</option>
-                    <option value="No Preference">No Preference</option>
-                </select>
-                <input type="number" placeholder="Number of Children to Adopt" id="txtNumberOfChildren" runat="server" />
-                <label>Health Considerations</label>
-                <select id="ddlHealthConsiderations" runat="server">
-                    <option value="Healthy Child">Healthy Child</option>
-                    <option value="Child with Special Needs">Child with Special Needs</option>
-                    <option value="No Preference">No Preference</option>
-                </select>
-                
-                <h3>Background and Lifestyle Information</h3>
-                <input type="text" placeholder="Primary Language Spoken at Home" id="txtPrimaryLanguage" runat="server" />
-                <label>Religion (if applicable, and whether you prefer a child of the same religion)</label>
-                <select id="ddlReligion" runat="server">
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                    <option value="No Preference">No Preference</option>
-                </select>
-                
-                <h3>Parenting Style and Support</h3>
-                <textarea placeholder="Parenting Style Description" id="txtParentingStyle" runat="server"></textarea>
-                <label>Education Plans for the Child</label>
-                <select id="ddlEducationPlans" runat="server">
-                    <option value="Public School">Public School</option>
-                    <option value="Private School">Private School</option>
-                    <option value="Homeschooling">Homeschooling</option>
-                    <option value="No Preference">No Preference</option>
-                </select>
-                
-                <h3>Motivations and Additional Information</h3>
-                <textarea placeholder="Reason for Adopting" id="txtReasonForAdopting" runat="server"></textarea>
-                <textarea placeholder="Previous Adoption Experience (if any)" id="txtPreviousExperience" runat="server"></textarea>
-                <textarea placeholder="How did you learn about our NGO?" id="txtLearnAboutNGO" runat="server"></textarea>
-                <textarea placeholder="Any Other Relevant Information" id="txtOtherInformation" runat="server"></textarea>
-                
-                <asp:Button ID="BtnSubmitAdoption" runat="server" Text="Submit Adoption Preferences" CssClass="button" OnClick="BtnSubmitAdoption_Click" />
+                <h2>Adoption Request Form</h2>
+                <asp:Label ID="lblMessage" runat="server" Visible="False"></asp:Label>
+    
+                <h3>Select Child to Adopt</h3>
+                <asp:DropDownList ID="ddlChildID" runat="server" CssClass="form-control"></asp:DropDownList>
+    
+                <asp:Button ID="BtnSubmitAdoption" runat="server" Text="Submit Adoption Request" CssClass="button" OnClick="BtnSubmitAdoption_Click" />
+               
             </div>
-        </div>
+            </div>
     </form>
     <!-- HTML Markup -->
     <div id="messageContainer" runat="server" style="display: none; text-align: center; padding: 10px; border-radius: 5px; margin-top: 20px;"></div>
@@ -363,71 +312,6 @@
                 overlay.style.display = 'none';
                 form.style.display = 'none';
             }
-        }
-
-        function submitDonation() {
-            // Retrieve form data
-            var firstName = document.getElementById('txtFirstName').value;
-            var lastName = document.getElementById('txtLastName').value;
-            var email = document.getElementById('txtEmail').value;
-            var phoneNumber = document.getElementById('txtPhoneNumber').value;
-            var amount = document.getElementById('txtAmount').value;
-            var contributionType = document.getElementById('ddlContributionType').value;
-            var isRegisteredMember = document.getElementById('chkIsRegisteredMember').checked;
-
-            // Create an HTML form element
-            var form = document.createElement('form');
-            form.setAttribute('method', 'post');
-            form.setAttribute('action', 'SaveDonation');
-
-            // Create hidden input fields to hold form data
-            var firstNameInput = document.createElement('input');
-            firstNameInput.setAttribute('type', 'hidden');
-            firstNameInput.setAttribute('name', 'FirstName');
-            firstNameInput.setAttribute('value', firstName);
-            form.appendChild(firstNameInput);
-
-            var lastNameInput = document.createElement('input');
-            lastNameInput.setAttribute('type', 'hidden');
-            lastNameInput.setAttribute('name', 'LastName');
-            lastNameInput.setAttribute('value', lastName);
-            form.appendChild(lastNameInput);
-
-            // Repeat the process for other form fields...
-
-            var emailInput = document.createElement('input');
-            emailInput.setAttribute('type', 'hidden');
-            emailInput.setAttribute('name', 'Email');
-            emailInput.setAttribute('value', email);
-            form.appendChild(emailInput);
-
-            var phoneNumberInput = document.createElement('input');
-            phoneNumberInput.setAttribute('type', 'hidden');
-            phoneNumberInput.setAttribute('name', 'PhoneNumber');
-            phoneNumberInput.setAttribute('value', phoneNumber);
-            form.appendChild(phoneNumberInput);
-
-            var amountInput = document.createElement('input');
-            amountInput.setAttribute('type', 'hidden');
-            amountInput.setAttribute('name', 'Amount');
-            amountInput.setAttribute('value', amount);
-            form.appendChild(amountInput);
-
-            var contributionTypeInput = document.createElement('input');
-            contributionTypeInput.setAttribute('type', 'hidden');
-            contributionTypeInput.setAttribute('name', 'ContributionType');
-            contributionTypeInput.setAttribute('value', contributionType);
-            form.appendChild(contributionTypeInput);
-
-            var isRegisteredMemberInput = document.createElement('input');
-            isRegisteredMemberInput.setAttribute('type', 'hidden');
-            isRegisteredMemberInput.setAttribute('name', 'IsRegisteredMember');
-            isRegisteredMemberInput.setAttribute('value', isRegisteredMember);
-            form.appendChild(isRegisteredMemberInput);
-
-            // Append the form to the document body and submit it
-            document.body.appendChild(form);
-            form.submit();
         }
     </script>
 

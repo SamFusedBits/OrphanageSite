@@ -11,7 +11,7 @@ namespace OrphanageSite.Admin
 {
     public partial class AdoptionStatus : System.Web.UI.Page
     {
-        private readonly string connStr = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\smsha\Desktop\Sharique\MCA\Sem2\Web Technology\Project\OrphanageSite\OrphanageSite\DataBase\OrphanageSiteDB.mdf;Integrated Security=True;Connect Timeout=30";
+        private readonly string connStr = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\hp\\source\\repos\\OrphanageSite\\OrphanageSite\\DataBase\\OrphanageSiteDB.mdf;Integrated Security=True;Connect Timeout=30";
 
         protected void Page_Load(object sender, EventArgs e)
         {
