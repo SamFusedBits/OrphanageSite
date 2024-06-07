@@ -129,17 +129,15 @@
     <!--This is the header It starts from here-->
     <header>
         <nav>
-            <a href="#" class="logo">HopeHaven</a>
+            <a href="Index.aspx" class="logo">HopeHaven</a>
             <ul>
-                <li><a href="#">About</a></li>
-                <li><a href="#">For Kids</a></li>
-                <li><a href="#">Our Mission</a></li>
-                <li><a href="#">Get Involved</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="Index.aspx">Home</a></li>
+                <li><a href="Camp.aspx">Camps</a></li>
+                <li><a href="Sponsors.aspx">Sponsor</a></li>
             </ul>
             <div class="auth-buttons">
-                <a href="#" class="login">Log in</a>
-                <a href="#" class="signup">Sign up</a>
+                <a href="Login.aspx" class="login">Log in</a>
+                <a href="Register.aspx" class="signup">Sign up</a>
             </div>
         </nav>
     </header>
@@ -155,8 +153,8 @@
         <h2>Get involved today</h2>
         <p>No act of kindness is ever wasted. Start your journey of giving now.</p>
         <div class="footer-buttons">
-            <button class="donate-btn">Get Started</button>
-            <button class="signup-btn">Sign up</button>
+            <a href="Sponsors.aspx"><button class="donate-btn">Get Started</button></a>
+            <a href="Register.aspx"><button class="signup-btn">Sign up</button></a>
         </div>
         <div class="footer-links">
             <a href="#">Articles</a>
