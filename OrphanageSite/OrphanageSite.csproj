@@ -78,7 +78,23 @@
     <Content Include="Assets\CSS\ScrollBar.css" />
     <Content Include="Assets\images\adopt.png" />
     <Content Include="Assets\images\child.jpg" />
+    <Content Include="Assets\images\children_playing.png" />
+    <Content Include="Assets\images\circle-profile-pic_!.jpg" />
+    <Content Include="Assets\images\circle-profile-pic_2.jfif" />
+    <Content Include="Assets\images\circle-profile-pic_3.jfif" />
     <Content Include="Assets\images\donation.jpg" />
+    <Content Include="Assets\images\group %281%29.png" />
+    <Content Include="Assets\images\group %282%29.png" />
+    <Content Include="Assets\images\group.png" />
+    <Content Include="Assets\images\icon1.png" />
+    <Content Include="Assets\images\icon2.png" />
+    <Content Include="Assets\images\icon3.png" />
+    <Content Include="Assets\images\icon4.png" />
+    <Content Include="Assets\images\icon5.png" />
+    <Content Include="Assets\images\icon6.png" />
+    <Content Include="Assets\images\Image.png" />
+    <Content Include="Assets\images\png-transparent-kids-playing.png" />
+    <Content Include="Assets\images\teacher_children.jfif" />
     <Content Include="Assets\images\user-register.png" />
     <Content Include="Camp.aspx" />
     <Content Include="DataBase\OrphanageSiteDB.mdf" />
@@ -86,6 +102,7 @@
     <Content Include="Assets\images\admin-image.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Index.aspx" />
     <Content Include="Sponsors.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Register.aspx" />
@@ -155,6 +172,13 @@
     </Compile>
     <Compile Include="Camp.aspx.designer.cs">
       <DependentUpon>Camp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
